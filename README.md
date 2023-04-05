@@ -11,7 +11,7 @@ The test file contains a number of example pytest tests.
 Computes the average x and y of the closest points to a given coordinate in a list.
 
 `coord`: A Point representing the (x, y) coordinates of the reference point.\
-`point_list`: A list of Points representing the (x, y) coordinates of the points to consider.
+`point_list`: A list of Points representing the (x, y) coordinates of the points to consider.\
 `point_count`: An integer representing the number of closest points to consider.\
 `return`: A tuple representing the (x, y) coordinates of the average of the closest points.
 
