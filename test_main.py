@@ -10,7 +10,7 @@ def test_closest_points_average_simple():
     assert y == 1
 
 
-def test_closest_points_float():
+def test_closest_points_average_float():
     points: list[Point] = [(8.8, 0.8), (8.8, 2.6), (9.6, 0.7)]
     coord: Point = (8.7, 1.6)
     x, y = closest_points_average(coord=coord, point_list=points, point_count=3)
