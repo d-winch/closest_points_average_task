@@ -1,3 +1,14 @@
+"""
+This file contains a utility function to work with points in 2D space.
+This module can be imported and used in other Python scripts for working with 2D points.
+
+Author: David Winch
+Date: April 5th, 2023
+
+Functions:
+- closest_points_average(coord, point_list, point_count): Computes the average of the closest points to a given coordinate in a list.
+"""
+
 import copy
 import math
 
@@ -7,9 +18,21 @@ Point = tuple[float, float]
 def closest_points_average(
     coord: Point, point_list: list[Point], point_count: int
 ) -> Point:
-    list_p = [(p, math.dist(coord, p)) for p in point_list]
-    list_p.sort(key=lambda x: x[1])
-    closest_points = list_p[:point_count]
+    """
+    This function takes a coordinate, a list of points, and a number of points to consider, and returns the average (x, y) coordinates of the closest points to the given coordinate in the list.
+
+    :param coord: A Point representing the (x, y) coordinates of the reference point.
+    :type coord: tuple[float, float]
+    :param point_list: A list of Points representing the (x, y) coordinates of the points to consider.
+    :type point_list: list[tuple[float, float]]
+    :param point_count: An integer representing the number of closest points to consider.
+    :type point_count: int
+    :return: A tuple representing the (x, y) coordinates of the average of the closest points.
+    :rtype: tuple[float, float]
+    """
+    points_w_distances = [(p, math.dist(coord, p)) for p in point_list]
+    points_w_distances.sort(key=lambda x: x[1])
+    closest_points = points_w_distances[:point_count]
     avg_x = sum(p[0][0] for p in closest_points) / point_count
     avg_y = sum(p[0][1] for p in closest_points) / point_count
     return (avg_x, avg_y)
@@ -51,7 +74,7 @@ if __name__ == "__main__":
 
     for i in range(0, 30, 5):
         points_without_coord = copy.copy(points)
-        points_without_coord.remove(points[i])
+        points_without_coord.remove(points[i])  # Remove the point we're comparing to
         print(
             f"{points[i]} -> {closest_points_average(points[i], points_without_coord, 3)}"
         )
